@@ -4,7 +4,7 @@ RSpec.feature 'Admin Authentication Methods', :js do
   context 'elements' do
     scenario 'has configuration tab' do
       visit spree.admin_path
-      click_link 'Configuration'
+      click_link 'Settings'
       expect(page).to have_text 'SOCIAL AUTHENTICATION METHODS'
     end
   end
@@ -12,7 +12,7 @@ RSpec.feature 'Admin Authentication Methods', :js do
   context 'when no auth methods exists' do
     background do
       visit spree.admin_path
-      click_link 'Configuration'
+      click_link 'Settings'
       click_link 'Social Authentication Methods'
     end
 
@@ -21,8 +21,7 @@ RSpec.feature 'Admin Authentication Methods', :js do
 
       click_link 'New Authentication Method'
       expect(page).to have_text 'BACK TO AUTHENTICATION METHODS LIST'
-
-      select2 'Test', from: 'Environment'
+      select 'Test', from: 'authentication_method[environment]'
       select2 'Github', from: 'Social Provider'
       fill_in 'API Key', with: 'KEY123'
       fill_in 'API Secret', with: 'SEC123'
@@ -50,7 +49,7 @@ RSpec.feature 'Admin Authentication Methods', :js do
 
     background do
       visit spree.admin_path
-      click_link 'Configuration'
+      click_link 'Settings'
       click_link 'Social Authentication Methods'
     end
 
