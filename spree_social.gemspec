@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_runtime_dependency 'solidus_core', [">= 1.1.0.pre", "< 1.2.0"]
+  s.add_runtime_dependency 'solidus_core', [">= 1.1.0.pre", "<= 1.3.0.alpha"]
   s.add_runtime_dependency 'omniauth'
   s.add_runtime_dependency 'oa-core'
   s.add_runtime_dependency 'omniauth-twitter'
@@ -41,7 +41,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov', '~> 0.9.0'
   s.add_development_dependency 'sqlite3', '~> 1.3.10'
   s.add_development_dependency 'coffee-rails', '~> 4.0.0'
-  s.add_development_dependency 'sass-rails', '~> 4.0.0'
+  s.add_development_dependency 'sass-rails', '~> 5.0.0'
   s.add_development_dependency 'guard-rspec'
   s.add_development_dependency 'rubocop', '>= 0.24.1'
 end
