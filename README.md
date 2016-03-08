@@ -1,5 +1,6 @@
 # Solidus Social
 
+[![Build Status](https://travis-ci.org/solidusio-contrib/solidus_social.svg?branch=master)](https://travis-ci.org/solidusio-contrib/solidus_social)
 [![Code Climate](https://codeclimate.com/github/solidusio-contrib/solidus_social/badges/gpa.svg)](https://codeclimate.com/github/solidusio-contrib/solidus_social)
 
 Core for all social media related functionality for Solidus.
