@@ -4,6 +4,12 @@ rvm:
   - 2.1
   - 2.2
   - '2.3.0'
+env:
+  matrix:
+    - SOLIDUS_BRANCH=master
+    - SOLIDUS_BRANCH=v1.2
+    - SOLIDUS_BRANCH=v1.1
+    - SOLIDUS_BRANCH=v1.0
 sudo: false
 before_script:
   - sh -e /etc/init.d/xvfb start
