@@ -5,7 +5,7 @@ RSpec.feature 'Admin Authentication Methods', :js do
     scenario 'has configuration tab' do
       visit spree.admin_path
       click_link 'Settings'
-      expect(page).to have_text 'SOCIAL AUTHENTICATION METHODS'
+      expect(page).to have_text(/Social Authentication Methods/i)
     end
   end
 
