@@ -43,6 +43,15 @@ RSpec.feature 'signing in using Omniauth', :js do
       click_link 'My Account'
       expect(page).to have_text 'My Account'
     end
+
+    scenario "view 'My Account'" do
+      visit spree.root_path
+      click_link 'Login'
+      find('a[title="Login with facebook"]').trigger('click')
+      expect(page).to have_text 'You are now signed in with your facebook account.'
+      click_link 'My Account'
+      expect(page).not_to have_selector 'div#social-signin-links'
+    end
   end
 
   context 'twitter' do
