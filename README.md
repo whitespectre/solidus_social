@@ -151,6 +151,10 @@ strategy][12] for them. (If there isn't, you can [write one][13].)
      different font icons or classic background images, without having to
      override views.
 
+## Documentation
+
+API documentation is available [on RubyDoc.info][15].
+
 ## Contributing
 
 See corresponding [guidelines][11].
@@ -171,3 +175,4 @@ Copyright (c) 2014 [John Dyer][7] and [contributors][8], released under the [New
 [12]: https://github.com/intridea/omniauth/wiki/List-of-Strategies
 [13]: https://github.com/intridea/omniauth/wiki/Strategy-Contribution-Guide
 [14]: http://fontello.com/
+[15]: http://www.rubydoc.info/github/solidusio-contrib/solidus_social/
