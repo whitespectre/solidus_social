@@ -68,7 +68,7 @@ want to use.
 
 When setting up development applications, keep in mind that most services do
 not support `localhost` for your URL/domain. You will need to us a regular
-domain (i.e.  `domain.tld`, `hostname.local`) or an IP addresses (127.0.0.1`).
+domain (i.e.  `domain.tld`, `hostname.local`) or an IP addresses (`127.0.0.1`).
 Make sure you specifity the right IP address.
 
 ### Facebook
@@ -107,10 +107,6 @@ Make sure you specifity the right IP address.
   - Callback URL: `http://yourhostname.local:3000` for development and
     `http://your-site.com` for production
 4. Click Create.
-
-> This does not seem to be a listed GitHub item right now. To view and edit
-> your applications go to
-> [http://github.com/account/applications](http://github.com/account/applications)
 
 ### Amazon
 
