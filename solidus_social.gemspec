@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_runtime_dependency 'solidus_core', ["~> 1.0"]
+  s.add_runtime_dependency 'solidus_auth_devise'
   s.add_runtime_dependency 'omniauth'
   s.add_runtime_dependency 'oa-core'
   s.add_runtime_dependency 'omniauth-twitter'
