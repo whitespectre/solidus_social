@@ -7,11 +7,11 @@ es-MX:
     user_was_not_valid: "El usuario no fue válido."
     add_another_service: 'Añadir otro servicio para inicio de sesión:'
     authentications:
-      destroy: 'Método de autenticación destruido exitosamente.'
+      destroy: 'Método de autenticación eliminado exitosamente.'
     back_to_authentication_methods_list: "Volver a la lista de métodos de autenticación"
     edit_social_method: 'Editando metodo de autenticación'
     new_social_method: 'Nuevo método de autenticación'
-    no_authentication_methods_found: "No se encuentran ni métodos de autenticación"
+    no_authentication_methods_found: "No se encuentran ningún método de autenticación"
     one_more_step: 'Un paso más para completar tu registro desde %{kind}'
     remove_authentication_option_confirmation: '¿Está seguro que quiere eliminar este método de autenticación?'
     sign_into_account: 'Puedes iniciar sesión usando:'
@@ -22,5 +22,5 @@ es-MX:
     social_authentication_methods_description: 'Configurar métodos de autenticación de OAuth'
     social_provider: 'Proveedor social'
     please_confirm_your_email: 'Por favor confirme su email para continuar'
-    sign_in_with: 'Autententicado con %{provider}'
+    sign_in_with: 'Autenticado con %{provider}'
     you_have_signed_in_with_these_services: "Has iniciado sesión con estos servicios"
