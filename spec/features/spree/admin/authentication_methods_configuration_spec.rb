@@ -17,10 +17,10 @@ RSpec.feature 'Admin Authentication Methods', :js do
     end
 
     scenario 'can create new' do
-      expect(page).to have_text 'NO AUTHENTICATION METHODS FOUND, ADD ONE!'
+      expect(page).to have_text /NO AUTHENTICATION METHODS FOUND, ADD ONE!/i
 
       click_link 'New Authentication Method'
-      expect(page).to have_text 'BACK TO AUTHENTICATION METHODS LIST'
+      expect(page).to have_text /BACK TO AUTHENTICATION METHODS LIST/i
       select 'Test', from: 'authentication_method[environment]'
       select2 'Github', from: 'Social Provider'
       fill_in 'API Key', with: 'KEY123'
