@@ -16,6 +16,16 @@ module SolidusSocial
       Spree::SocialConfig = Spree::SocialConfiguration.new
     end
 
+    initializer 'solidus_social.decorate_spree_user' do
+      next unless Rails.application.respond_to?(:reloader)
+
+      Rails.application.reloader.after_class_unload do
+        # Reload and decorate the spree user class immediately after it is
+        # unloaded so that it is available to devise when loading routes
+        load File.join(__dir__, '../../app/models/spree/user_decorator.rb')
+      end
+    end
+
     def self.activate
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
