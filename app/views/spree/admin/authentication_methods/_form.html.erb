@@ -17,22 +17,6 @@
   </div>
   <div class="alpha five columns">
     <div data-hook="environment" class="field">
-      <%= f.field_container :api_key do %>
-        <%= f.label :api_key, Spree.t(:social_api_key) %> <span class="required">*</span><br />
-        <%= f.text_field :api_key, class: 'fullwidth' %>
-      <% end %>
-    </div>
-  </div>
-  <div class="alpha five columns">
-    <div data-hook="environment" class="field">
-      <%= f.field_container :api_secret do %>
-        <%= f.label :api_secret, Spree.t(:social_api_secret) %> <span class="required">*</span><br />
-        <%= f.text_field :api_secret, class: 'fullwidth' %>
-      <% end %>
-    </div>
-  </div>
-  <div class="alpha five columns">
-    <div data-hook="environment" class="field">
       <%= f.field_container :active do %>
         <span style="padding:0 10px 2px;"><%= f.label :active, Spree.t(:active) %></span>
         <%= f.radio_button :active, :true %>

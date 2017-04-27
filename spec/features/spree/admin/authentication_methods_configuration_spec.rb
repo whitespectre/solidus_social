@@ -23,17 +23,9 @@ RSpec.feature 'Admin Authentication Methods', :js do
       expect(page).to have_text /BACK TO AUTHENTICATION METHODS LIST/i
       select2 'Test', from: 'Environment'
       select2 'Github', from: 'Social Provider'
-      fill_in 'API Key', with: 'KEY123'
-      fill_in 'API Secret', with: 'SEC123'
 
       click_button 'Create'
       expect(page).to have_text 'successfully created!'
-    end
-
-    scenario 'does not save with empty fields' do
-      click_link 'New Authentication Method'
-      click_button 'Create'
-      expect(page).to have_text 'errors prohibited this record from being saved'
     end
   end
 
@@ -58,8 +50,7 @@ RSpec.feature 'Admin Authentication Methods', :js do
         click_icon :edit
       end
 
-      fill_in 'API Key', with: 'fake'
-      fill_in 'API Secret', with: 'fake'
+      find('#authentication_method_active_false').click
 
       click_button 'Update'
       expect(page).to have_text 'successfully updated!'
