@@ -25,6 +25,10 @@ module SolidusSocial
     config.to_prepare(&method(:activate).to_proc)
   end
 
+  def self.configured_providers
+    Spree::SocialConfig.providers.keys.map(&:to_s)
+  end
+
   # Setup all OAuth providers
   def self.init_provider(provider)
     return unless ActiveRecord::Base.connection.table_exists?('spree_authentication_methods')
