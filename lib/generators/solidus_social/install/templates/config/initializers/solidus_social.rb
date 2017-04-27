@@ -1,3 +1,7 @@
+Spree::SocialConfig.configure do |config|
+  config.use_static_preferences!
+end
+
 SolidusSocial::OAUTH_PROVIDERS.each do |provider|
   SolidusSocial.init_provider(provider[1])
 end
