@@ -1,5 +1,16 @@
 Spree::SocialConfig.configure do |config|
   config.use_static_preferences!
+
+  # Configure the Path prefix for OAuth paths
+  # The default is /user/auth/:provider
+  #
+  # for /member/auth/:provider
+  # config.path_prefix = 'member'
+  # for /profile/auth/:provider
+  # config.path_prefix = 'profile'
+  # for /auth/:provider
+  # config.path_prefix = ''
+
   config.providers = {
     facebook: {
       api_key: ENV['FACEBOOK_API_KEY'],
@@ -24,9 +35,7 @@ Spree::SocialConfig.configure do |config|
   }
 end
 
-SolidusSocial::OAUTH_PROVIDERS.each do |provider|
-  SolidusSocial.init_provider(provider[1])
-end
+SolidusSocial.init_providers
 
 OmniAuth.config.logger = Logger.new(STDOUT)
 OmniAuth.logger.progname = 'omniauth'

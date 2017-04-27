@@ -1,12 +1,4 @@
 module SolidusSocial
-  OAUTH_PROVIDERS = [
-    %w(Facebook facebook),
-    %w(Twitter twitter),
-    %w(Github github),
-    %w(Google google_oauth2),
-    %w(Amazon amazon)
-  ]
-
   class Engine < Rails::Engine
     engine_name 'solidus_social'
 
@@ -33,19 +25,6 @@ module SolidusSocial
     Spree::SocialConfig.providers.each do |provider, credentials|
       setup_key_for(provider, credentials[:api_key], credentials[:api_secret])
     end
-  end
-
-  # Setup all OAuth providers
-  def self.init_provider(provider)
-    return unless ActiveRecord::Base.connection.table_exists?('spree_authentication_methods')
-    key, secret = nil
-    Spree::AuthenticationMethod.where(environment: ::Rails.env).each do |auth_method|
-      next unless auth_method.provider == provider
-      key = auth_method.api_key
-      secret = auth_method.api_secret
-      Rails.logger.info("[Spree Social] Loading #{auth_method.provider.capitalize} as authentication source")
-    end
-    setup_key_for(provider.to_sym, key, secret)
   end
 
   def self.setup_key_for(provider, key, secret)
