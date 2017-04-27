@@ -1,4 +1,8 @@
 class Spree::AuthenticationMethod < ActiveRecord::Base
+  def self.provider_options
+    SolidusSocial.configured_providers.map { |provider_name| [provider_name.split("_").first.camelize, provider_name] }
+  end
+
   validates :provider, :api_key, :api_secret, presence: true
 
   def self.active_authentication_methods?
