@@ -1,3 +1,8 @@
+## Unreleased
+
+*   Use the install generator to import the solidus social initializer into your app.
+    Please run `bundle exec rails g solidus_social:install` in order to upgrade.
+
 ## Solidus Social 1.0.0
 
 *   Renamed SpreeSocial to SolidusSocial
