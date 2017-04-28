@@ -34,8 +34,8 @@
       <% @authentication_methods.each do |method|%>
         <tr id="<%= dom_id method %>" data-hook="admin_trackers_index_rows">
           <td class="align-center"><%= method.provider %></td>
-          <td class="align-center"><%= truncate method.api_key, length: 20 %></td>
-          <td class="align-center"><%= truncate method.api_secret, length: 20 %></td>
+          <td class="align-center"><%= truncate method.api_key, length: 10 %></td>
+          <td class="align-center"><%= truncate method.api_secret, length: 10 %></td>
           <td class="align-center"><%= method.environment.to_s.titleize %></td>
           <td class="align-center"><%= method.active ? Spree.t(:yes) : Spree.t(:no) %></td>
           <td class="actions">

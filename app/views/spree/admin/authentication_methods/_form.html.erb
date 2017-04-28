@@ -11,23 +11,7 @@
     <div data-hook="environment" class="field">
       <%= f.field_container :provider do %>
         <%= f.label :provider, Spree.t(:social_provider) %>
-        <%= f.select :provider, SolidusSocial::OAUTH_PROVIDERS, {}, { include_blank: false, class: 'select2 fullwidth' } %>
-      <% end %>
-    </div>
-  </div>
-  <div class="alpha five columns">
-    <div data-hook="environment" class="field">
-      <%= f.field_container :api_key do %>
-        <%= f.label :api_key, Spree.t(:social_api_key) %> <span class="required">*</span><br />
-        <%= f.text_field :api_key, class: 'fullwidth' %>
-      <% end %>
-    </div>
-  </div>
-  <div class="alpha five columns">
-    <div data-hook="environment" class="field">
-      <%= f.field_container :api_secret do %>
-        <%= f.label :api_secret, Spree.t(:social_api_secret) %> <span class="required">*</span><br />
-        <%= f.text_field :api_secret, class: 'fullwidth' %>
+        <%= f.select :provider, Spree::AuthenticationMethod.provider_options, {}, { include_blank: false, class: 'select2 fullwidth' } %>
       <% end %>
     </div>
   </div>
