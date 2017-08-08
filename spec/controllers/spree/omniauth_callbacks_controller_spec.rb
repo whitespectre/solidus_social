@@ -141,6 +141,34 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
             expect(controller).to receive(:sign_in_and_redirect)
             expect { controller.twitter }.to change(Spree::User, :count).by(1)
           end
+
+          context 'when `Spree.user_class` has changed' do
+            before do
+              @previous_user_class = Spree.user_class.to_s
+              Spree.user_class = Spree::LegacyUser.to_s
+
+              # the application was initialized with Spree::User, so some
+              # some methods do not exist on LegacyUser. In practice, this will
+              # not happen as Spree.user_class will not change on the fly like
+              # this.
+              # this statement simply stubs the required missing method
+              allow_any_instance_of(Spree::LegacyUser)
+                .to receive(:apply_omniauth)
+            end
+
+            after do
+              # in order to not affect other tests, restore the original class
+              Spree.user_class = @previous_user_class
+            end
+
+            it 'creates a new user' do
+              expect(Spree::User).not_to receive :new
+              expect_any_instance_of(Spree::User).not_to receive :save
+
+              expect { controller.twitter }
+                .to change(Spree::LegacyUser, :count).by(1)
+            end
+          end
         end
 
         context 'email belongs to existing user' do
