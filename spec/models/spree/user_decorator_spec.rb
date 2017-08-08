@@ -21,6 +21,27 @@ RSpec.describe Spree::User, type: :model do
         expect(user.email).to eq 'test@example.com'
       end
     end
+
+    context 'instance is valid' do
+      let(:user) { create(:user) { |user| user.email = nil } }
+      let(:omni_params) do
+        {
+          'provider' => 'any_provider',
+          'uid' => 12_345,
+          'info' => { 'email' => 'test@example.com' }
+        }
+      end
+
+      before do
+        allow(auths).to receive(:build)
+        allow(auths).to receive(:empty?).and_return(false)
+      end
+
+      it 'builds a valid user' do
+        user.apply_omniauth(omni_params)
+        expect(user.valid?).to be_truthy
+      end
+    end
   end
 
   context '.password_required?' do
