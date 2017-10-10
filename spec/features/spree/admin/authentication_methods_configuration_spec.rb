@@ -57,11 +57,11 @@ RSpec.feature 'Admin Authentication Methods', :js do
     end
 
     scenario 'can be deleted' do
-      within_row(1) do
-        click_icon :trash
+      accept_alert do
+        within_row(1) do
+          click_icon :trash
+        end
       end
-
-      page.driver.browser.switch_to.alert.accept unless Capybara.javascript_driver == :poltergeist
 
       expect(page).to have_text 'successfully removed!'
       expect(page).not_to have_text authentication_method.provider
