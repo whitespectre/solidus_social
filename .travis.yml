@@ -1,8 +1,13 @@
-sudo: false
+sudo: required
 cache: bundler
 language: ruby
+dist: trusty
+addons:
+  apt:
+    packages:
+      - google-chrome-beta
 rvm:
-  - 2.3.1
+  - 2.3.5
 env:
   matrix:
     - SOLIDUS_BRANCH=v1.0 DB=postgres
