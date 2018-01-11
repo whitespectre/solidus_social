@@ -34,14 +34,13 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'capybara', '~> 2.4'
   s.add_development_dependency 'capybara-screenshot'
-  s.add_development_dependency 'database_cleaner', '1.3'
-  s.add_development_dependency 'rspec-rails', '~> 3.1'
+  s.add_development_dependency 'database_cleaner', '~> 1.6'
+  s.add_development_dependency 'rspec-rails', '~> 3.7'
   s.add_development_dependency 'factory_bot', '~> 4.4'
   s.add_development_dependency 'selenium-webdriver', '>= 2.41.0'
   s.add_development_dependency 'chromedriver-helper'
   s.add_development_dependency 'poltergeist', '~> 1.5'
   s.add_development_dependency 'simplecov', '~> 0.9.0'
   s.add_development_dependency 'sqlite3', '~> 1.3.10'
-  s.add_development_dependency 'rubocop', '~> 0.39.0'
-  s.add_development_dependency 'rake', '< 11'
+  s.add_development_dependency 'rubocop', '~> 0.52.0'
 end
