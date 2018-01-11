@@ -19,7 +19,7 @@ elsif branch >= "v2.0"
   gem 'rails', '~> 5.0.0'
 end
 
-gem 'pg'
+gem 'pg', '~> 0.21'
 gem 'mysql2'
 
 group :development, :test do
