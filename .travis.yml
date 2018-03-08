@@ -3,9 +3,7 @@ cache: bundler
 language: ruby
 dist: trusty
 addons:
-  apt:
-    packages:
-      - google-chrome-beta
+  chrome: stable
 rvm:
   - 2.3.5
 env:
