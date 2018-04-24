@@ -98,8 +98,14 @@ Make sure you specifity the right IP address.
 > The app console is available at [https://login.amazon.com/manageApps](https://login.amazon.com/manageApps)
 
 ### Google OAuth2
+[Google / APIs / Credentials/ Create Credential](https://console.developers.google.com/)
 
-_TODO: Write instructions._
+1. In the APIs and Services dashboard, visit 'Credentials' on the side, then select 'Create Credentials' and 'Oauth client ID'.
+2. Name the Application, select "Web Application" as a type.
+3. Under "Authorized redirect URIs", add your site (example:
+   `http://localhost:3000/users/auth/google_oauth2/callback`)
+
+> More info: [https://developers.google.com/identity/protocols/OAuth2](https://developers.google.com/identity/protocols/OAuth2)
 
 ### Other OAuth Providers
 
