@@ -10,6 +10,7 @@ en:
       destroy: 'Successfully destroyed authentication method.'
     back_to_authentication_methods_list: "Back To Authentication Methods List"
     edit_social_method: "Editing Social Authentication Method"
+    environment: "Environment"
     new_social_method: "New Authentication Method"
     no_authentication_methods_found: "No Authentication Methods Found"
     one_more_step: 'One more step to complete your registration from %{kind}'
