@@ -10,7 +10,7 @@
   <div class="alpha five columns">
     <div data-hook="environment" class="field">
       <%= f.field_container :provider do %>
-        <%= f.label :provider, Spree.t(:social_provider) %>
+        <%= f.label :provider, I18n.t('spree.social_provider') %>
         <%= f.select :provider, Spree::AuthenticationMethod.provider_options, {}, { include_blank: false, class: 'select2 fullwidth' } %>
       <% end %>
     </div>
@@ -18,11 +18,11 @@
   <div class="alpha five columns">
     <div data-hook="environment" class="field">
       <%= f.field_container :active do %>
-        <span style="padding:0 10px 2px;"><%= f.label :active, Spree.t(:active) %></span>
+        <span style="padding:0 10px 2px;"><%= f.label :active, I18n.t('spree.active') %></span>
         <%= f.radio_button :active, :true %>
-        <span style="padding:0 2px;"><%= Spree.t(:say_yes) %></span>
+        <span style="padding:0 2px;"><%= I18n.t('spree.say_yes') %></span>
         <%= f.radio_button :active, :false %>
-        <span style="padding:0 2px"><%= Spree.t(:say_no) %></span>
+        <span style="padding:0 2px"><%= I18n.t('spree.say_no') %></span>
       <% end %>
     </div>
   </div>

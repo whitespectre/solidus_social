@@ -1,13 +1,13 @@
 <%= render 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
-  <%= Spree.t(:social_authentication_methods) %>
+  <%= I18n.t('spree.social_authentication_methods') %>
 <% end %>
 
 <% content_for :page_actions do %>
   <ul class="actions inline-menu">
     <li>
-      <%= button_link_to Spree.t(:new_social_method), new_object_url, id: 'admin_new_slide_link' %>
+      <%= link_to I18n.t('spree.new_social_method'), new_object_url, id: 'admin_new_slide_link' %>
     </li>
   </ul>
 <% end %>
@@ -23,11 +23,11 @@
       <col style="width: 20%" />
     </colgroup>
     <thead data-hook="admin_social_methods_index_headers">
-      <th><%= Spree.t(:social_provider) %></th>
-      <th><%= Spree.t(:social_api_key) %></th>
-      <th><%= Spree.t(:social_api_secret) %></th>
+      <th><%= I18n.t('spree.social_provider') %></th>
+      <th><%= I18n.t('spree.social_api_key') %></th>
+      <th><%= I18n.t('spree.social_api_secret') %></th>
       <th><%= Spree.t(:environment) %></th>
-      <th><%= Spree.t(:active) %></th>
+      <th><%= I18n.t('spree.active') %></th>
       <th data-hook="admin_social_methods_index_header_actions" class="actions"></th>
     </thead>
     <tbody>
@@ -37,7 +37,7 @@
           <td class="align-center"><%= truncate method.api_key, length: 10 %></td>
           <td class="align-center"><%= truncate method.api_secret, length: 10 %></td>
           <td class="align-center"><%= method.environment.to_s.titleize %></td>
-          <td class="align-center"><%= method.active ? Spree.t(:yes) : Spree.t(:no) %></td>
+          <td class="align-center"><%= method.active ? I18n.t('spree.yes') : I18n.t('spree.no') %></td>
           <td class="actions">
             <%= link_to_edit method, no_text: true %>
             <%= link_to_delete method, no_text: true %>
@@ -48,7 +48,7 @@
   </table>
 <% else %>
   <div class="alpha twelve columns no-objects-found">
-    <%= Spree.t(:no_authentication_methods_found) %>,
-    <%= Spree.t(:add_one) %>!
+    <%= I18n.t('spree.no_authentication_methods_found') %>,
+    <%= I18n.t('spree.add_one') %>!
   </div>
 <% end %>
