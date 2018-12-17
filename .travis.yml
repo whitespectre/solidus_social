@@ -4,6 +4,11 @@ language: ruby
 dist: trusty
 addons:
   chrome: stable
+  apt:
+    packages:
+      - chromium-chromedriver
+before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 rvm:
   - 2.3.5
 env:
