@@ -3,7 +3,7 @@
   <div id="existing-customer">
     <% if spree_current_user.user_authentications %>
       <% unless spree_current_user.user_authentications.empty? %>
-        <p><strong><%= Spree.t(:you_have_signed_in_with_these_services) %>:</strong></p>
+        <p><strong><%= I18n.t('spree.you_have_signed_in_with_these_services') %>:</strong></p>
         <div class="authentications">
           <% for user_authentication in spree_current_user.user_authentications %>
             <div class="authentication">
@@ -12,16 +12,16 @@
                 <%= user_authentication.provider %>
               </div>
               <div class="uid columns two"><%= user_authentication.uid %></div>
-              <%= link_to 'X', user_authentication, data: { confirm: "#{Spree.t(:remove_authentication_option_confirmation)}" }, method: :delete, class: 'remove' %>
+              <%= link_to 'X', user_authentication, data: { confirm: I18n.t('spree.remove_authentication_option_confirmation') }, method: :delete, class: 'remove' %>
             </div>
           <% end %>
           <div class="clear"></div>
         </div>
       <% end %>
     <% end %>
-    
+
     <% if Spree::AuthenticationMethod.available_for(spree_current_user).present? %>
-      <%= content_tag(:p, content_tag(:strong, Spree.t(:add_another_service))) %>
+      <%= content_tag(:p, content_tag(:strong, I18n.t('spree.add_another_service'))) %>
       <%= render 'spree/shared/social' %>
     <% end %>
   </div>
