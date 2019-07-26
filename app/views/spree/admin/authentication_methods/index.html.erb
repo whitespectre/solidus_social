@@ -36,8 +36,8 @@
           <td class="align-center"><%= method.provider %></td>
           <td class="align-center"><%= truncate method.api_key, length: 10 %></td>
           <td class="align-center"><%= truncate method.api_secret, length: 10 %></td>
-          <td class="align-center"><%= method.environment.to_s.titleize %></td>
-          <td class="align-center"><%= method.active ? I18n.t('spree.yes') : I18n.t('spree.no') %></td>
+          <td class="align-center"><%= method.environment.to_s %></td>
+          <td class="align-center"><%= method.active ? I18n.t('spree.say_yes') : I18n.t('spree.say_no') %></td>
           <td class="actions">
             <%= link_to_edit method, no_text: true %>
             <%= link_to_delete method, no_text: true %>
