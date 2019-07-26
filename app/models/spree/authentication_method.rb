@@ -9,6 +9,10 @@ class Spree::AuthenticationMethod < ActiveRecord::Base
     active.exists?
   end
 
+  def self.envs
+    [Rails.env]
+  end
+
   scope :active, -> { where(environment: ::Rails.env, active: true) }
 
   scope :available_for, lambda { |user|

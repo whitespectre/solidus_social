@@ -3,7 +3,7 @@
     <div data-hook="environment" class="field">
       <%= f.field_container :environment do %>
         <%= label_tag nil, Spree::AuthenticationMethod.human_attribute_name(:environment) %>
-        <%= collection_select(:authentication_method, :environment, Rails.configuration.database_configuration.keys, :to_s, :to_s, {}, { class: 'select2 fullwidth' }) %>
+        <%= collection_select(:authentication_method, :environment, Spree::AuthenticationMethod.envs, :to_s, :to_s, {}, { class: 'select2 fullwidth' }) %>
       <% end %>
     </div>
   </div>
