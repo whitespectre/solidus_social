@@ -6,8 +6,10 @@ class Spree::AuthenticationMethod < ActiveRecord::Base
   validates :provider, presence: true
 
   def self.active_authentication_methods?
-    where(environment: ::Rails.env, active: true).exists?
+    active.exists?
   end
+
+  scope :active, -> { where(environment: ::Rails.env, active: true) }
 
   scope :available_for, lambda { |user|
     sc = where(environment: ::Rails.env)
