@@ -4,8 +4,12 @@ Spree.user_class.class_eval do
   devise :omniauthable
 
   def apply_omniauth(omniauth)
-    if omniauth.fetch('info', {})['email'].present?
-      self.email = omniauth['info']['email'] if email.blank?
+    if email.blank?
+      if omniauth.fetch('info', {})['email'].present?
+        self.email = omniauth['info']['email']
+      else
+        self.email = "#{signup_token}@#{ENV['BASE_DOMAIN']}"
+      end
     end
 
     if omniauth.fetch('info', {})['name'].present?
