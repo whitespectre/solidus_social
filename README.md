@@ -1,6 +1,6 @@
 # Solidus Social
 
-[![Build Status](https://travis-ci.org/solidusio-contrib/solidus_social.svg?branch=master)](https://travis-ci.org/solidusio-contrib/solidus_social)
+[![CircleCI](https://circleci.com/gh/solidusio-contrib/solidus_social.svg?style=svg)](https://circleci.com/gh/solidusio-contrib/solidus_social)
 [![Code Climate](https://codeclimate.com/github/solidusio-contrib/solidus_social/badges/gpa.svg)](https://codeclimate.com/github/solidusio-contrib/solidus_social)
 
 Social login support for Solidus. Solidus Social handles authorization, account
