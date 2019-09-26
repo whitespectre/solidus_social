@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'deface'
   s.add_runtime_dependency 'omniauth'
   s.add_runtime_dependency 'oa-core'
+  s.add_runtime_dependency 'omniauth-instagram'
   s.add_runtime_dependency 'omniauth-twitter'
   s.add_runtime_dependency 'omniauth-facebook'
   s.add_runtime_dependency 'omniauth-github'
