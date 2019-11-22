@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Spree::UserRegistrationsController.class_eval do
   after_action :clear_omniauth, only: :create
 

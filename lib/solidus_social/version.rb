@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SolidusSocial
   module_function
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Spree.user_class.class_eval do
   has_many :user_authentications, dependent: :destroy
 
@@ -11,6 +13,6 @@ Spree.user_class.class_eval do
   end
 
   def password_required?
-    (user_authentications.empty? || !password.blank?) && super
+    (user_authentications.empty? || password.present?) && super
   end
 end

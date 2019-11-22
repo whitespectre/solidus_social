@@ -1,4 +1,6 @@
-lib = File.expand_path('../lib/', __FILE__)
+# frozen_string_literal: true
+
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 
 require 'solidus_social/version'
@@ -21,17 +23,17 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_runtime_dependency 'solidus_core', ['>= 1.0', '< 3']
-  s.add_runtime_dependency 'solidus_support'
-  s.add_runtime_dependency 'solidus_auth_devise'
   s.add_runtime_dependency 'deface'
-  s.add_runtime_dependency 'omniauth'
   s.add_runtime_dependency 'oa-core'
-  s.add_runtime_dependency 'omniauth-twitter'
+  s.add_runtime_dependency 'omniauth'
+  s.add_runtime_dependency 'omniauth-amazon'
   s.add_runtime_dependency 'omniauth-facebook'
   s.add_runtime_dependency 'omniauth-github'
   s.add_runtime_dependency 'omniauth-google-oauth2'
-  s.add_runtime_dependency 'omniauth-amazon'
+  s.add_runtime_dependency 'omniauth-twitter'
+  s.add_runtime_dependency 'solidus_auth_devise'
+  s.add_runtime_dependency 'solidus_core', ['>= 1.0', '< 3']
+  s.add_runtime_dependency 'solidus_support'
 
   s.add_development_dependency 'solidus_extension_dev_tools'
 end

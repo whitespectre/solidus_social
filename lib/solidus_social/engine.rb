@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SolidusSocial
   class Engine < Rails::Engine
     engine_name 'solidus_social'
