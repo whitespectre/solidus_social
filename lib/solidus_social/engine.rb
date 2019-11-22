@@ -7,7 +7,7 @@ module SolidusSocial
     config.autoload_paths += %W(#{config.root}/lib)
 
     initializer 'solidus_social.environment', before: 'spree.environment' do
-      Spree::SocialConfig = Spree::SocialConfiguration.new
+      ::Spree::SocialConfig = ::Spree::SocialConfiguration.new
     end
 
     initializer 'solidus_social.decorate_spree_user' do
@@ -30,11 +30,11 @@ module SolidusSocial
   end
 
   def self.configured_providers
-    Spree::SocialConfig.providers.keys.map(&:to_s)
+    ::Spree::SocialConfig.providers.keys.map(&:to_s)
   end
 
   def self.init_providers
-    Spree::SocialConfig.providers.each do |provider, credentials|
+    ::Spree::SocialConfig.providers.each do |provider, credentials|
       setup_key_for(provider, credentials[:api_key], credentials[:api_secret])
     end
   end
