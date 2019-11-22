@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
   let(:user) { create(:user) }
   let(:omni_params) { double('omni', :[] => nil).as_null_object }
@@ -45,18 +47,19 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
     end
   end
 
-  context '#callback' do
+  describe '#callback' do
     context 'when user is authenticated' do
       before do
         allow(controller).to receive(:spree_current_user).and_return(user)
       end
 
-      it_should_behave_like 'denied_permissions'
+      it_behaves_like 'denied_permissions'
 
       context 'when existing user_authentication' do
         let(:user_authentication) { double('user_authentication', user: user) }
+
         before do
-          allow(Spree::UserAuthentication).to receive(:find_by_provider_and_uid).and_return(user_authentication)
+          allow(Spree::UserAuthentication).to receive(:find_by).and_return(user_authentication)
         end
 
         it 'does not need to create the user_authentication' do
@@ -77,7 +80,7 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
 
       context 'when no existing user_authentication' do
         before do
-          allow(Spree::UserAuthentication).to receive(:find_by_provider_and_uid).and_return(nil)
+          allow(Spree::UserAuthentication).to receive(:find_by).and_return(nil)
         end
 
         it 'creates a new user_authentication' do
@@ -96,7 +99,7 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
           controller.twitter
         end
 
-        it_should_behave_like 'associate_order'
+        it_behaves_like 'associate_order'
       end
     end
 
@@ -105,12 +108,13 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
         allow(controller).to receive(:spree_current_user).and_return(nil)
       end
 
-      it_should_behave_like 'denied_permissions'
+      it_behaves_like 'denied_permissions'
 
       context 'when existing user_authentication' do
         let(:user_authentication) { double('user_authentication', user: user) }
+
         before do
-          allow(Spree::UserAuthentication).to receive(:find_by_provider_and_uid).and_return(user_authentication)
+          allow(Spree::UserAuthentication).to receive(:find_by).and_return(user_authentication)
         end
 
         it 'does not need to create the user_authentication' do
@@ -131,8 +135,9 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
 
       context 'when no existing user_authentication' do
         let(:user) { Spree::User.new }
+
         before do
-          allow(Spree::UserAuthentication).to receive(:find_by_provider_and_uid).and_return(nil)
+          allow(Spree::UserAuthentication).to receive(:find_by).and_return(nil)
           allow(controller).to receive(:auth_hash).and_return('provider' => 'facebook', 'info' => { 'email' => 'spree@gmail.com' }, 'uid' => '123')
         end
 
@@ -175,7 +180,7 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
           before { @user = create(:user, email: 'spree@gmail.com') }
 
           it 'does not create new user' do
-            expect { controller.twitter }.to_not change(Spree::User, :count)
+            expect { controller.twitter }.not_to change(Spree::User, :count)
           end
 
           it 'assigns authentication to existing user' do

@@ -1,8 +1,10 @@
-RSpec.feature 'Admin Authentication Methods', :js do
+# frozen_string_literal: true
+
+RSpec.describe 'Admin Authentication Methods', :js do
   stub_authorization!
 
   context 'elements' do
-    scenario 'has configuration tab' do
+    it 'has configuration tab' do
       visit spree.admin_path
       click_link 'Settings'
       expect(page).to have_text(/Social Authentication Methods/i)
@@ -10,13 +12,13 @@ RSpec.feature 'Admin Authentication Methods', :js do
   end
 
   context 'when no auth methods exists' do
-    background do
+    before do
       visit spree.admin_path
       click_link 'Settings'
       click_link 'Social Authentication Methods'
     end
 
-    scenario 'can create new' do
+    it 'can create new' do
       expect(page).to have_text /NO AUTHENTICATION METHODS FOUND, ADD ONE!/i
 
       click_link 'New Authentication Method'
@@ -30,22 +32,23 @@ RSpec.feature 'Admin Authentication Methods', :js do
   end
 
   context 'when auth method exists' do
-    given!(:authentication_method) do
+    let!(:authentication_method) do
       Spree::AuthenticationMethod.create!(
         provider: 'facebook',
         api_key: 'fake',
         api_secret: 'fake',
         environment: Rails.env,
-        active: true)
+        active: true
+      )
     end
 
-    background do
+    before do
       visit spree.admin_path
       click_link 'Settings'
       click_link 'Social Authentication Methods'
     end
 
-    scenario 'can be updated' do
+    it 'can be updated' do
       within_row(1) do
         click_icon :edit
       end
@@ -56,7 +59,7 @@ RSpec.feature 'Admin Authentication Methods', :js do
       expect(page).to have_text 'successfully updated!'
     end
 
-    scenario 'can be deleted' do
+    it 'can be deleted' do
       accept_alert do
         within_row(1) do
           click_icon :trash

@@ -1,4 +1,6 @@
-class Spree::AuthenticationMethod < ActiveRecord::Base
+# frozen_string_literal: true
+
+class Spree::AuthenticationMethod < ApplicationRecord
   def self.provider_options
     SolidusSocial.configured_providers.map { |provider_name| [provider_name.split("_").first.camelize, provider_name] }
   end

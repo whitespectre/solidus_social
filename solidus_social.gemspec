@@ -1,4 +1,6 @@
-lib = File.expand_path('../lib/', __FILE__)
+# frozen_string_literal: true
+
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 
 require 'solidus_social/version'
@@ -21,26 +23,17 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_runtime_dependency 'solidus_core', [">= 1.0", "< 3"]
-  s.add_runtime_dependency 'solidus_support'
-  s.add_runtime_dependency 'solidus_auth_devise'
   s.add_runtime_dependency 'deface'
-  s.add_runtime_dependency 'omniauth'
   s.add_runtime_dependency 'oa-core'
-  s.add_runtime_dependency 'omniauth-twitter'
+  s.add_runtime_dependency 'omniauth'
+  s.add_runtime_dependency 'omniauth-amazon'
   s.add_runtime_dependency 'omniauth-facebook'
   s.add_runtime_dependency 'omniauth-github'
   s.add_runtime_dependency 'omniauth-google-oauth2'
-  s.add_runtime_dependency 'omniauth-amazon'
+  s.add_runtime_dependency 'omniauth-twitter'
+  s.add_runtime_dependency 'solidus_auth_devise'
+  s.add_runtime_dependency 'solidus_core', ['>= 1.0', '< 3']
+  s.add_runtime_dependency 'solidus_support'
 
-  s.add_development_dependency 'capybara', '~> 2.4'
-  s.add_development_dependency 'capybara-screenshot'
-  s.add_development_dependency 'database_cleaner', '~> 1.6'
-  s.add_development_dependency 'rspec-rails', '~> 3.7'
-  s.add_development_dependency 'selenium-webdriver', '>= 2.41.0'
-  s.add_development_dependency 'chromedriver-helper'
-  s.add_development_dependency 'poltergeist', '~> 1.5'
-  s.add_development_dependency 'simplecov', '~> 0.9.0'
-  s.add_development_dependency 'sqlite3', '~> 1.3.10'
-  s.add_development_dependency 'rubocop', '~> 0.52.0'
+  s.add_development_dependency 'solidus_extension_dev_tools'
 end

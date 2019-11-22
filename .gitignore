@@ -17,3 +17,4 @@ coverage
 .node-version
 .phantom-version
 /pkg/
+spec/examples.txt

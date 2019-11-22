@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include Spree::Core::ControllerHelpers::Common
   include Spree::Core::ControllerHelpers::Order
@@ -23,9 +25,9 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       return
     end
 
-    authentication = Spree::UserAuthentication.find_by_provider_and_uid(auth_hash['provider'], auth_hash['uid'])
+    authentication = Spree::UserAuthentication.find_by(provider: auth_hash['provider'], uid: auth_hash['uid'])
 
-    if authentication.present? and authentication.try(:user).present?
+    if authentication.present? && authentication.try(:user).present?
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: auth_hash['provider'])
       sign_in_and_redirect :spree_user, authentication.user
     elsif spree_current_user
@@ -34,7 +36,7 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = I18n.t('devise.sessions.signed_in')
       redirect_back_or_default(account_url)
     else
-      user = Spree.user_class.find_by_email(auth_hash['info']['email']) || Spree.user_class.new
+      user = Spree.user_class.find_by(email: auth_hash['info']['email']) || Spree.user_class.new
       user.apply_omniauth(auth_hash)
       if user.save
         flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: auth_hash['provider'])
@@ -60,7 +62,7 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def passthru
-    render file: "#{Rails.root}/public/404", formats: [:html], status: 404, layout: false
+    render file: "#{Rails.root}/public/404", formats: [:html], status: :not_found, layout: false
   end
 
   def auth_hash

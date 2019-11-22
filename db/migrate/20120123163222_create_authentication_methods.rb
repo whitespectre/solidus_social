@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAuthenticationMethods < SolidusSupport::Migration[4.2]
   def change
     create_table :spree_authentication_methods do |t|
