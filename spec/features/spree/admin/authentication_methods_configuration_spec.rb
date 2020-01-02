@@ -60,7 +60,7 @@ RSpec.describe 'Admin Authentication Methods', :js do
     end
 
     it 'can be deleted' do
-      accept_alert do
+      accept_confirm do
         within_row(1) do
           click_icon :trash
         end
