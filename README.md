@@ -158,7 +158,7 @@ Copyright (c) 2014 [John Dyer][7] and [contributors][8], released under the [New
 [6]: https://github.com/solidusio-contrib/solidus_social/issues
 [7]: https://github.com/LBRapid
 [8]: https://github.com/solidusio-contrib/solidus_social/graphs/contributors
-[9]: https://github.com/solidusio-contrib/solidus_social/blob/master/LICENSE.md
+[9]: https://github.com/solidusio-contrib/solidus_social/blob/master/LICENSE
 [10]: https://login.amazon.com/manageApps
 [11]: https://github.com/solidusio-contrib/solidus_social/blob/master/CONTRIBUTING.md
 [12]: https://github.com/intridea/omniauth/wiki/List-of-Strategies
