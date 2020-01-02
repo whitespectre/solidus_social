@@ -8,7 +8,7 @@ module SolidusSocial
       class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_stylesheets
-        inject_into_file 'vendor/assets/stylesheets/spree/frontend/all.css', " *= require spree/frontend/solidus_social\n", before: %r(\*/), verbose: true
+        inject_into_file 'vendor/assets/stylesheets/spree/frontend/all.css', " *= require spree/frontend/solidus_social\n", before: %r{\*/}, verbose: true
       end
 
       def add_migrations
@@ -24,7 +24,7 @@ module SolidusSocial
         if run_migrations
           run 'bundle exec rake db:migrate'
         else
-          puts 'Skipping rake db:migrate, don\'t forget to run it!'
+          puts 'Skipping rake db:migrate, don\'t forget to run it!' # rubocop:disable Rails/Output
         end
       end
     end
