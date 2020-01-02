@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module SolidusSocial
+  USER_DECORATOR_PATH = File.expand_path(
+    "#{__dir__}/../../app/decorators/models/solidus_social/spree/user_decorator.rb"
+  )
+
   class Engine < Rails::Engine
     include SolidusSupport::EngineExtensions::Decorators
 
@@ -18,7 +22,7 @@ module SolidusSocial
       app.reloader.after_class_unload do
         # Reload and decorate the spree user class immediately after it is
         # unloaded so that it is available to devise when loading routes
-        load File.join(__dir__, '../../app/models/spree/user_decorator.rb')
+        load USER_DECORATOR_PATH
       end
     end
   end

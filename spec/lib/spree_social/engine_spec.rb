@@ -22,4 +22,10 @@ RSpec.describe SolidusSocial do
       subject
     end
   end
+
+  describe 'USER_DECORATOR_PATH' do
+    it 'is pointing to the correct file' do
+      expect(File.exist? SolidusSocial::USER_DECORATOR_PATH).to eq(true)
+    end
+  end
 end
