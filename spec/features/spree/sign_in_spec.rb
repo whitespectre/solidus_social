@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'signing in using Omniauth', :js do
+RSpec.describe 'Signing in using Omniauth', :js do
   context 'facebook' do
     before do
       Spree::AuthenticationMethod.create!(
@@ -10,7 +10,6 @@ RSpec.describe 'signing in using Omniauth', :js do
         environment: Rails.env,
         active: true
       )
-      OmniAuth.config.test_mode = true
       OmniAuth.config.mock_auth[:facebook] = {
         'provider' => 'facebook',
         'uid' => '123545',

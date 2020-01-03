@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 module SolidusSocial
+  USER_DECORATOR_PATH = File.expand_path(
+    "#{__dir__}/../../app/decorators/models/solidus_social/spree/user_decorator.rb"
+  )
+
   class Engine < Rails::Engine
+    include SolidusSupport::EngineExtensions::Decorators
+
     engine_name 'solidus_social'
 
     config.autoload_paths += %W(#{config.root}/lib)
@@ -10,23 +16,15 @@ module SolidusSocial
       ::Spree::SocialConfig = ::Spree::SocialConfiguration.new
     end
 
-    initializer 'solidus_social.decorate_spree_user' do
-      next unless Rails.application.respond_to?(:reloader)
+    initializer 'solidus_social.decorate_spree_user' do |app|
+      next unless app.respond_to?(:reloader)
 
-      Rails.application.reloader.after_class_unload do
+      app.reloader.after_class_unload do
         # Reload and decorate the spree user class immediately after it is
         # unloaded so that it is available to devise when loading routes
-        load File.join(__dir__, '../../app/models/spree/user_decorator.rb')
+        load USER_DECORATOR_PATH
       end
     end
-
-    def self.activate
-      Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
-      end
-    end
-
-    config.to_prepare(&method(:activate).to_proc)
   end
 
   def self.configured_providers

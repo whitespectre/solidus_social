@@ -8,7 +8,7 @@ require 'solidus_social/version'
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'solidus_social'
-  s.version     = SolidusSocial.version
+  s.version     = SolidusSocial::VERSION
   s.summary     = 'Adds social network login services (OAuth) to Spree'
   s.description = s.summary
   s.required_ruby_version = '>= 1.9.3'
@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'omniauth-twitter'
   s.add_runtime_dependency 'solidus_auth_devise'
   s.add_runtime_dependency 'solidus_core', ['>= 1.0', '< 3']
-  s.add_runtime_dependency 'solidus_support'
+  s.add_runtime_dependency 'solidus_support', '~> 0.4.0'
 
-  s.add_development_dependency 'solidus_extension_dev_tools'
+  s.add_development_dependency 'solidus_dev_support'
 end
