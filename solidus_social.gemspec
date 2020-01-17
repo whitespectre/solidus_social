@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('lib', __dir__)
-$LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
-
+$:.push File.expand_path('lib', __dir__)
 require 'solidus_social/version'
 
 Gem::Specification.new do |s|
@@ -11,17 +9,24 @@ Gem::Specification.new do |s|
   s.version     = SolidusSocial::VERSION
   s.summary     = 'Adds social network login services (OAuth) to Spree'
   s.description = s.summary
-  s.required_ruby_version = '>= 1.9.3'
 
   s.author   = 'John Dyer'
   s.email    = 'jdyer@spreecommerce.com'
   s.homepage = 'http://www.spreecommerce.com'
   s.license  = 'BSD-3'
 
-  s.files        = `git ls-files`.split("\n")
-  s.test_files   = `git ls-files -- spec/*`.split("\n")
-  s.require_path = 'lib'
-  s.requirements << 'none'
+  if s.respond_to?(:metadata)
+    s.metadata["homepage_uri"] = s.homepage if s.homepage
+    s.metadata["source_code_uri"] = s.homepage if s.homepage
+  end
+
+  s.files = Dir.chdir(File.expand_path(__dir__)) do
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  end
+  s.test_files = Dir['spec/**/*']
+  s.bindir = "exe"
+  s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  s.require_paths = ["lib"]
 
   s.add_runtime_dependency 'deface'
   s.add_runtime_dependency 'oa-core'

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'spree/core'
+
 module SolidusSocial
   USER_DECORATOR_PATH = File.expand_path(
     "#{__dir__}/../../app/decorators/models/solidus_social/spree/user_decorator.rb"
@@ -8,9 +10,16 @@ module SolidusSocial
   class Engine < Rails::Engine
     include SolidusSupport::EngineExtensions::Decorators
 
+    isolate_namespace Spree
+
     engine_name 'solidus_social'
 
     config.autoload_paths += %W(#{config.root}/lib)
+
+    # use rspec for tests
+    config.generators do |g|
+      g.test_framework :rspec
+    end
 
     initializer 'solidus_social.environment', before: 'spree.environment' do
       ::Spree::SocialConfig = ::Spree::SocialConfiguration.new

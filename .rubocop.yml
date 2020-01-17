@@ -4,6 +4,8 @@ require:
 inherit_gem:
   solidus_dev_support: .rubocop.yml
 
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   TargetRubyVersion: 2.5
   Exclude:
