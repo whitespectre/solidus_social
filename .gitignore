@@ -13,10 +13,4 @@ nbproject
 pkg
 *.swp
 spec/dummy
-.rvmrc
-.bundle
-.ruby-version
-.ruby-gemset
-.node-version
-.phantom-version
 spec/examples.txt
