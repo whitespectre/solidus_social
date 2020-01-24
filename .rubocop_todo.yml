@@ -1,3 +1,7 @@
+Metrics/LineLength:
+  Enabled: true
+  Max: 160
+
 Rails/FilePath:
   Enabled: false
 

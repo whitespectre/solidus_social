@@ -2,4 +2,4 @@ bump:
   recurse: false
   file: 'lib/solidus_social/version.rb'
   message: Bump SolidusSocial to %{version}
-  branch: true
+  tag: true

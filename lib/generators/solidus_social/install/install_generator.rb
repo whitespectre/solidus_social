@@ -8,7 +8,12 @@ module SolidusSocial
       class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_stylesheets
-        inject_into_file 'vendor/assets/stylesheets/spree/frontend/all.css', " *= require spree/frontend/solidus_social\n", before: %r{\*/}, verbose: true
+        inject_into_file(
+          'vendor/assets/stylesheets/spree/frontend/all.css',
+          " *= require spree/frontend/solidus_social\n",
+          before: %r{\*/},
+          verbose: true
+        )
       end
 
       def add_migrations

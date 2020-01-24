@@ -148,6 +148,8 @@ API documentation is available [on RubyDoc.info][15].
 
 See corresponding [guidelines][11].
 
+## License
+
 Copyright (c) 2014 [John Dyer][7] and [contributors][8], released under the [New BSD License][9]
 
 [1]: https://github.com/spree/spree

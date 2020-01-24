@@ -14,8 +14,6 @@ module SolidusSocial
 
     engine_name 'solidus_social'
 
-    config.autoload_paths += %W(#{config.root}/lib)
-
     # use rspec for tests
     config.generators do |g|
       g.test_framework :rspec
