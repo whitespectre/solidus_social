@@ -10,10 +10,6 @@ require 'coffee_script'
 require 'spree/core'
 
 module SolidusSocial
-  USER_DECORATOR_PATH = File.expand_path(
-    "#{__dir__}/../../app/decorators/models/solidus_social/spree/user_decorator.rb"
-  )
-
   class Engine < Rails::Engine
     include SolidusSupport::EngineExtensions::Decorators
 
@@ -25,6 +21,10 @@ module SolidusSocial
     config.generators do |g|
       g.test_framework :rspec
     end
+
+    USER_DECORATOR_PATH = root.join(
+      "app/decorators/models/solidus_social/spree/user_decorator.rb"
+    ).to_s
 
     initializer 'solidus_social.environment', before: 'spree.environment' do
       ::Spree::SocialConfig = ::Spree::SocialConfiguration.new
