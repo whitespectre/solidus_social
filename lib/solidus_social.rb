@@ -3,12 +3,24 @@
 require 'solidus_core'
 require 'solidus_support'
 require 'solidus_auth_devise'
-require 'omniauth-twitter'
-require 'omniauth-facebook'
-require 'omniauth-github'
-require 'omniauth-google-oauth2'
-require 'omniauth-amazon'
-require 'deface'
-require 'solidus_social/engine'
+
 require 'solidus_social/version'
-require 'coffee_script'
+require 'solidus_social/engine'
+
+module SolidusSocial
+  def self.configured_providers
+    ::Spree::SocialConfig.providers.keys.map(&:to_s)
+  end
+
+  def self.init_providers
+    ::Spree::SocialConfig.providers.each do |provider, credentials|
+      setup_key_for(provider, credentials[:api_key], credentials[:api_secret])
+    end
+  end
+
+  def self.setup_key_for(provider, key, secret)
+    Devise.setup do |config|
+      config.omniauth provider, key, secret, setup: true
+    end
+  end
+end
