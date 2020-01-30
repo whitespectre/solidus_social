@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Configure Rails Environment
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 
 # Run Coverage report
 require 'solidus_dev_support/rspec/coverage'
