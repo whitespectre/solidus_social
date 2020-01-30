@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+require 'omniauth-twitter'
+require 'omniauth-facebook'
+require 'omniauth-github'
+require 'omniauth-google-oauth2'
+require 'omniauth-amazon'
+require 'deface'
+require 'coffee_script'
 require 'spree/core'
 
 module SolidusSocial
