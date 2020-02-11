@@ -3,7 +3,7 @@ en:
   devise:
     omniauth_callbacks:
       success: "You are now signed in with your %{kind} account."
-      existing_partner: "Partner with email %{email} already exists."
+      existing_dsr: "%{dsr} with email %{email} already exists."
   spree:
     user_was_not_valid: User was not valid.
     add_another_service: "Add another service to sign in with:"

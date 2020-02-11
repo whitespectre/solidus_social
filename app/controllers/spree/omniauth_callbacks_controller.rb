@@ -29,14 +29,14 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if authentication.present? and authentication.try(:user).present?
       user = authentication.user
-      if user.partner?
+      if user.dsr?
         flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: auth_hash['provider'])
         sign_in_and_redirect :spree_user, user
       else
         # make sure signup_cookie equal existing user token
         set_signup_token_cookie(user.signup_token)
 
-        redirect_to signup_url(subdomain: 'clubhouse')
+        redirect_to signup_url(subdomain: ENV['OFFICE_DOMAIN'])
       end
     elsif spree_current_user
       redirect_back_or_default(root_url)
@@ -45,9 +45,9 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       email = auth_hash['info']['email']
       existing_user = Spree.user_class.find_by_email(email)
-      if existing_user && existing_user.partner?
-        flash[:error] = I18n.t('devise.omniauth_callbacks.existing_partner', email: email)
-        redirect_to partner_login_url(subdomain: 'clubhouse')
+      if existing_user && existing_user.dsr?
+        flash[:error] = I18n.t('devise.omniauth_callbacks.existing_dsr', email: email, dsr: I18n.t('app.dsr'))
+        redirect_to dsr_login_url(subdomain: ENV['OFFICE_DOMAIN'])
       elsif existing_user
         # make sure signup_cookie equal existing user token
         set_signup_token_cookie(existing_user.signup_token)
@@ -57,7 +57,7 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         existing_user.save
         existing_user.next_step! if existing_user.in_progress?
 
-        redirect_to signup_url(subdomain: 'clubhouse')
+        redirect_to signup_url(subdomain: ENV['OFFICE_DOMAIN'])
       else
         user = generate_new_user(set_signup_token)
 
@@ -66,7 +66,7 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         user.save
         user.next_step! if user.in_progress?
 
-        redirect_to signup_url(subdomain: 'clubhouse')
+        redirect_to signup_url(subdomain: ENV['OFFICE_DOMAIN'])
       end
     end
   end
@@ -87,12 +87,12 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def set_signup_token
-    cookies[:signup_token2].presence ||
+    cookies[:signup_token].presence ||
       set_signup_token_cookie(SecureRandom.hex)
   end
 
   def set_signup_token_cookie(token)
-    cookies.permanent[:signup_token2] = { value: token, domain: ENV['BASE_DOMAIN'] }
+    cookies.permanent[:signup_token] = { value: token, domain: ENV['BASE_DOMAIN'] }
     token
   end
 
