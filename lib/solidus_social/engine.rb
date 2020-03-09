@@ -2,6 +2,7 @@
 
 require 'omniauth-twitter'
 require 'omniauth-facebook'
+require 'omniauth-instagram'
 require 'omniauth-github'
 require 'omniauth-google-oauth2'
 require 'omniauth-amazon'
