@@ -1,10 +1,22 @@
 ## Unreleased
 
+## v1.3.0
+
+- Migrated factories from FactoryGirl to FactoryBot
+- Add support for Solidus 2.4+
+- Reduced compatible versions of `solidus_core` to 2.x
+- Removed the deprecated `icon:` argument from admin buttons
+- Fixed an issue when using Safari to authenticate
+- `Spree::UserRegistrationsController` and `Spree.user_class` are now decorated by
+  prepending modules in the `SolidusSocial::Spree` namespace instead of using `class_eval`
+- Development of the extension is not relying on `solidus_dev_support` and CircleCI
+- Moved the Facebook strategy patch to it's own prepended module
+
 ## v1.2.0
 
 - Switched to using the install generator to import the solidus social
-  initializer into apps. **Please run `bundle exec rails g
-  solidus_social:install` in order to upgrade.**
+  initializer into apps. **Please run `bin/rails generate solidus_social:install`
+  in order to upgrade.**
 - Removed the `SolidusSocial::OAUTH_PROVIDERS` constant in favour of
   the `Spree::AuthenticationMethod.providers_options` class
   method. This is populated using the `Spree::SocialConfig#providers` Hash.

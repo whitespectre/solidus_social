@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe SolidusSocial do
   describe '.configured_providers' do
     subject { described_class.configured_providers }
@@ -16,7 +18,7 @@ RSpec.describe SolidusSocial do
     end
 
     it "sets up Devise for the given providers" do
-      expect(SolidusSocial).to receive(:setup_key_for).with(:facebook, "secret_key", "secret_secret")
+      expect(described_class).to receive(:setup_key_for).with(:facebook, "secret_key", "secret_secret")
       subject
     end
   end

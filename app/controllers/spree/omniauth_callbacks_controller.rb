@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include Spree::Core::ControllerHelpers::Common
   include Spree::Core::ControllerHelpers::Order
@@ -24,10 +26,10 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       return
     end
 
-    authentication = Spree::UserAuthentication.find_by_provider_and_uid(auth_hash['provider'], auth_hash['uid'])
+    authentication = Spree::UserAuthentication.find_by(provider: auth_hash['provider'], uid: auth_hash['uid'])
     session[:oauth_provider] = auth_hash['provider']
 
-    if authentication.present? and authentication.try(:user).present?
+    if authentication.present? && authentication.try(:user).present?
       user = authentication.user
       if user.dsr?
         flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: auth_hash['provider'])
@@ -77,7 +79,7 @@ class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def passthru
-    render file: "#{Rails.root}/public/404", formats: [:html], status: 404, layout: false
+    render file: "#{Rails.root}/public/404", formats: [:html], status: :not_found, layout: false
   end
 
   def auth_hash

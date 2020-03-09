@@ -1,13 +1,15 @@
-RSpec.feature 'signing in using Omniauth', :js do
+# frozen_string_literal: true
+
+RSpec.describe 'Signing in using Omniauth', :js do
   context 'facebook' do
-    background do
+    before do
       Spree::AuthenticationMethod.create!(
         provider: 'facebook',
         api_key: 'fake',
         api_secret: 'fake',
         environment: Rails.env,
-        active: true)
-      OmniAuth.config.test_mode = true
+        active: true
+      )
       OmniAuth.config.mock_auth[:facebook] = {
         'provider' => 'facebook',
         'uid' => '123545',
@@ -23,7 +25,7 @@ RSpec.feature 'signing in using Omniauth', :js do
       }
     end
 
-    scenario 'going to sign in' do
+    it 'going to sign in' do
       visit spree.login_path
       click_on 'Login with facebook'
       expect(page).to have_text 'You are now signed in with your facebook account.'
@@ -34,7 +36,7 @@ RSpec.feature 'signing in using Omniauth', :js do
     end
 
     # Regression test for #91
-    scenario "attempting to view 'My Account' works" do
+    it "attempting to view 'My Account' works" do
       visit spree.login_path
       click_on 'Login with facebook'
       expect(page).to have_text 'You are now signed in with your facebook account.'
@@ -42,7 +44,7 @@ RSpec.feature 'signing in using Omniauth', :js do
       expect(page).to have_text 'My Account'
     end
 
-    scenario "view 'My Account'" do
+    it "view 'My Account'" do
       visit spree.login_path
       click_on 'Login with facebook'
       expect(page).to have_text 'You are now signed in with your facebook account.'
@@ -52,13 +54,14 @@ RSpec.feature 'signing in using Omniauth', :js do
   end
 
   context 'twitter' do
-    background do
+    before do
       Spree::AuthenticationMethod.create!(
         provider: 'twitter',
         api_key: 'fake',
         api_secret: 'fake',
         environment: Rails.env,
-        active: true)
+        active: true
+      )
       OmniAuth.config.test_mode = true
       OmniAuth.config.mock_auth[:twitter] = {
         'provider' => 'twitter',
@@ -74,7 +77,7 @@ RSpec.feature 'signing in using Omniauth', :js do
       }
     end
 
-    scenario 'going to sign in' do
+    it 'going to sign in' do
       visit spree.login_path
       click_on 'Login with twitter'
       expect(page).to have_text 'Please confirm your email address to continue'.upcase

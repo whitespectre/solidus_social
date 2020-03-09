@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 RSpec.describe Spree::User, type: :model do
   let(:user) { create(:user) }
   let(:omni_params) { { 'provider' => 'twitter', 'uid' => 12_345 } }
   let(:auths) { double 'auths' }
 
-  context '.apply_omniauth' do
+  describe '.apply_omniauth' do
     before { allow(user).to receive(:user_authentications).and_return(auths) }
 
     it 'builds an associated auth source' do
@@ -39,12 +41,12 @@ RSpec.describe Spree::User, type: :model do
 
       it 'builds a valid user' do
         user.apply_omniauth(omni_params)
-        expect(user.valid?).to be_truthy
+        expect(user).to be_valid
       end
     end
   end
 
-  context '.password_required?' do
+  describe '.password_required?' do
     before { user.password = nil }
 
     context 'user authentications is empty' do
