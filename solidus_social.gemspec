@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'omniauth-google-oauth2'
   spec.add_dependency 'omniauth-twitter'
   spec.add_dependency 'solidus_auth_devise'
-  spec.add_dependency 'solidus_core', ['>= 2.0.0', '< 3']
+  spec.add_dependency 'solidus_core', ['>= 2.0.0', '<= 3']
   spec.add_dependency 'solidus_support', '~> 0.5'
 
   spec.add_development_dependency 'solidus_dev_support'

@@ -12,7 +12,7 @@ require 'solidus_social/facebook_omniauth_strategy_ext'
 
 module SolidusSocial
   class Engine < Rails::Engine
-    include SolidusSupport::EngineExtensions::Decorators
+    include SolidusSupport::EngineExtensions
 
     isolate_namespace ::Spree
 
