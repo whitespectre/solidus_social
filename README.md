@@ -145,6 +145,35 @@ strategy][12] for them. (If there isn't, you can [write one][13].)
      different font icons or classic background images, without having to
      override views.
 
+#### Apple Id Example
+
+1. Add `gem "omniauth-apple"` to your Gemfile and run `bundle install`.
+2. In `config/initializers/solidus_social.rb` add and initialize a new provider
+   for SolidusSocial:
+
+   ```ruby
+
+     config.providers = {
+        apple:          {
+          icon:   'fa-apple',
+          title:  'Apple'
+        },
+       # More providers here
+   ```
+   add its configuration after `SolidusSocial.init_providers` line:
+   ```ruby
+   
+     Devise.setup do |config|
+       # The configuration key has to match your omniauth strategy.
+       config.omniauth :apple, ENV['APPLE_CLIENT_ID'], '',
+                       scope:    'email',
+                       team_id:  ENV['APPLE_TEAM_ID'],
+                       key_id:   ENV['APPLE_KEY_ID'],
+                       pem:      ENV['APPLE_PRIVATE_KEY'].gsub('\n', "\n")
+     end
+   ```
+   Notice: APPLE_PRIVATE_KEY should consist from one-line p8-file content, like this `'\n-----BEGIN PRIVATE KEY-----\nsecret\n-----END PRIVATE KEY-----\n'`
+
 Documentation
 -------------
 
