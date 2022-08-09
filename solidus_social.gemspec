@@ -31,7 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'deface'
   spec.add_dependency 'oa-core'
   spec.add_dependency 'omniauth'
-  spec.add_dependency 'omniauth-amazon'
   spec.add_dependency 'omniauth-facebook'
   spec.add_dependency 'omniauth-github'
   spec.add_dependency 'omniauth-google-oauth2'
