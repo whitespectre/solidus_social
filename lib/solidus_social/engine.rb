@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'omniauth-twitter'
 require 'omniauth-facebook'
 require 'omniauth-github'
 require 'omniauth-google-oauth2'

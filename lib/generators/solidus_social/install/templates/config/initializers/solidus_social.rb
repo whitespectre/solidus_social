@@ -18,10 +18,6 @@ Spree::SocialConfig.configure do |config|
       api_key: ENV['FACEBOOK_API_KEY'],
       api_secret: ENV['FACEBOOK_API_SECRET'],
     },
-    twitter: {
-      api_key: ENV['TWITTER_API_KEY'],
-      api_secret: ENV['TWITTER_API_SECRET'],
-    },
     github: {
       api_key: ENV['GITHUB_API_KEY'],
       api_secret: ENV['GITHUB_API_SECRET'],
