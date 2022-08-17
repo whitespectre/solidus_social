@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-require 'omniauth-twitter'
 require 'omniauth-facebook'
 require 'omniauth-github'
 require 'omniauth-google-oauth2'
-require 'omniauth-amazon'
 require 'deface'
-require 'coffee_script'
 require 'spree/core'
+require 'solidus_social/social_configuration'
 require 'solidus_social/facebook_omniauth_strategy_ext'
 
 module SolidusSocial
@@ -26,10 +24,6 @@ module SolidusSocial
     USER_DECORATOR_PATH = root.join(
       "app/decorators/models/solidus_social/spree/user_decorator.rb"
     ).to_s
-
-    initializer 'solidus_social.environment', before: 'spree.environment' do
-      ::Spree::SocialConfig = ::Spree::SocialConfiguration.new
-    end
 
     initializer 'solidus_social.decorate_spree_user' do |app|
       next unless app.respond_to?(:reloader)

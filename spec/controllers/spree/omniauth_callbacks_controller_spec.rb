@@ -18,17 +18,17 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
 
     it 'redirects properly' do
       expect(controller).to receive(:redirect_back_or_default)
-      controller.twitter
+      controller.github
     end
 
     it 'displays an error message' do
-      controller.twitter
+      controller.github
       expect(flash[:error]).not_to be_blank
     end
 
     it 'does not attempt authentication' do
       expect(controller).not_to receive(:sign_in_and_redirect)
-      controller.twitter
+      controller.github
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
 
     it 'associates the order with the user' do
       expect(order).to receive(:associate_user!).with(user)
-      controller.twitter
+      controller.github
     end
   end
 
@@ -64,17 +64,17 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
 
         it 'does not need to create the user_authentication' do
           expect(user.user_authentications).not_to receive(:create!)
-          controller.twitter
+          controller.github
         end
 
         it 'sets the flash notice' do
-          controller.twitter
+          controller.github
           expect(flash[:notice]).not_to be_blank
         end
 
         it 'authenticates as that user' do
           expect(controller).to receive(:sign_in_and_redirect)
-          controller.twitter
+          controller.github
         end
       end
 
@@ -86,17 +86,17 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
         it 'creates a new user_authentication' do
           expect(user).to receive(:apply_omniauth)
           expect(user).to receive(:save!)
-          controller.twitter
+          controller.github
         end
 
         it 'sets the flash notice' do
-          controller.twitter
+          controller.github
           expect(flash[:notice]).not_to be_blank
         end
 
         it 'redirects properly' do
           expect(controller).to receive(:redirect_back_or_default)
-          controller.twitter
+          controller.github
         end
 
         it_behaves_like 'associate_order'
@@ -119,17 +119,17 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
 
         it 'does not need to create the user_authentication' do
           expect(user.user_authentications).not_to receive(:create!)
-          controller.twitter
+          controller.github
         end
 
         it 'does not create a new user account' do
           expect(Spree::User).not_to receive :new
-          controller.twitter
+          controller.github
         end
 
         it 'authenticates as that user' do
           expect(controller).to receive(:sign_in_and_redirect).with(:spree_user, user)
-          controller.twitter
+          controller.github
         end
       end
 
@@ -144,7 +144,7 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
         context "email doesn't belongs to anyone" do
           it 'creates a new user' do
             expect(controller).to receive(:sign_in_and_redirect)
-            expect { controller.twitter }.to change(Spree::User, :count).by(1)
+            expect { controller.github }.to change(Spree::User, :count).by(1)
           end
 
           context 'when `Spree.user_class` has changed' do
@@ -170,7 +170,7 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
               expect(Spree::User).not_to receive :new
               expect_any_instance_of(Spree::User).not_to receive :save
 
-              expect { controller.twitter }
+              expect { controller.github }
                 .to change(Spree::LegacyUser, :count).by(1)
             end
           end
@@ -180,11 +180,11 @@ RSpec.describe Spree::OmniauthCallbacksController, type: :controller do
           before { @user = create(:user, email: 'spree@gmail.com') }
 
           it 'does not create new user' do
-            expect { controller.twitter }.not_to change(Spree::User, :count)
+            expect { controller.github }.not_to change(Spree::User, :count)
           end
 
           it 'assigns authentication to existing user' do
-            expect { controller.twitter }.to change(@user.user_authentications, :count).by(1)
+            expect { controller.github }.to change(@user.user_authentications, :count).by(1)
           end
         end
       end
