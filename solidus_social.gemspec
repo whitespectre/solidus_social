@@ -30,10 +30,11 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'deface'
   spec.add_dependency 'oa-core'
-  spec.add_dependency 'omniauth', '~> 1.9.1'
+  spec.add_dependency 'omniauth'
   spec.add_dependency 'omniauth-facebook'
   spec.add_dependency 'omniauth-github'
   spec.add_dependency 'omniauth-google-oauth2'
+  spec.add_dependency 'omniauth-rails_csrf_protection'
   spec.add_dependency 'solidus_auth_devise'
   spec.add_dependency 'solidus_core', ['>= 2.0.0', '< 4']
   spec.add_dependency 'solidus_support', '~> 0.5'
