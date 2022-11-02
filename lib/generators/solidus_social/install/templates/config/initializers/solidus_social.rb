@@ -25,6 +25,10 @@ Spree::SocialConfig.configure do |config|
     google_oauth2: {
       api_key: ENV['GOOGLE_OAUTH2_API_KEY'],
       api_secret: ENV['GOOGLE_OAUTH2_API_SECRET'],
+    },
+    twitter2: {
+      api_key: ENV['TWITTER_API_KEY'],
+      api_secret: ENV['TWITTER_API_SECRET']
     }
   }
 end

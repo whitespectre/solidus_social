@@ -156,4 +156,38 @@ RSpec.describe 'Signing in using Omniauth', :js do
       expect(page).not_to have_selector 'div#social-signin-links'
     end
   end
+
+  context 'twitter' do
+    before do
+      Spree::AuthenticationMethod.create!(
+        provider: 'twitter2',
+        api_key: 'fake',
+        api_secret: 'fake',
+        environment: Rails.env,
+        active: true
+      )
+      OmniAuth.config.test_mode = true
+      OmniAuth.config.mock_auth[:twitter2] = {
+        'provider' => 'twitter2',
+        'uid' => '123545',
+        'info' => {
+          'name' => 'mockuser',
+          'image' => 'mock_user_thumbnail_url'
+        },
+        'credentials' => {
+          'token' => 'mock_token',
+          'secret' => 'mock_secret'
+        }
+      }
+    end
+
+    it 'going to sign in' do
+      visit spree.login_path
+      click_on 'Login with twitter'
+      expect(page).to have_text 'Please confirm your email address to continue'.upcase
+      fill_in 'Email', with: 'user@example.com'
+      click_button 'Create'
+      expect(page).to have_text 'Welcome! You have signed up successfully.'
+    end
+  end
 end
