@@ -3,6 +3,7 @@
 require 'omniauth-facebook'
 require 'omniauth-github'
 require 'omniauth-google-oauth2'
+require 'omniauth/twitter2'
 require 'omniauth/rails_csrf_protection'
 require 'deface'
 require 'spree/core'

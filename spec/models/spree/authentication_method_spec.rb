@@ -8,7 +8,8 @@ RSpec.describe Spree::AuthenticationMethod do
       [
         %w(Facebook facebook),
         %w(Github github),
-        %w(Google google_oauth2)
+        %w(Google google_oauth2),
+        %w(Twitter2 twitter2)
       ]
     end
 
