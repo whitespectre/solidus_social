@@ -6,11 +6,10 @@ RSpec.describe Spree::AuthenticationMethod do
 
     let(:expected_provider_options) do
       [
-        %w(Amazon amazon),
         %w(Facebook facebook),
-        %w(Twitter twitter),
         %w(Github github),
-        %w(Google google_oauth2)
+        %w(Google google_oauth2),
+        %w(Twitter2 twitter2)
       ]
     end
 

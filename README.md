@@ -5,8 +5,8 @@ SolidusSocial
 [![Code Climate](https://codeclimate.com/github/solidusio-contrib/solidus_social/badges/gpa.svg)](https://codeclimate.com/github/solidusio-contrib/solidus_social)
 
 Social login support for Solidus. Solidus Social handles authorization, account
-creation and association through third-party services. Currently Twitter,
-Facebook, Github, Google OAuth2, and Amazon are available out of the box.
+creation and association through third-party services.
+Currently Facebook, Github and Google OAuth2 are available out of the box.
 
 Installation
 ------------
@@ -44,7 +44,7 @@ Click "New Authentication Method" and choose one of your configured providers.
 Registering Your Application
 ----------------------------
 
-Facebook, Twitter, Github, Google OAuth2, and Amazon are supported out of the
+Facebook, Github and Google OAuth2 are supported out of the
 box but, you will need to register your application with each of the sites you
 want to use.
 
@@ -64,20 +64,6 @@ Make sure you specifity the right IP address.
     `http://your-site.com` for production
   - Site domain: `yourhostname.local` and `your-site.com` respectively
 
-### Twitter
-
-[Twitter / Application Management / Create an application][3]
-
-1. Fill in the name and description.
-2. Fill in the rest of the details:
-  - Application Website: `http://yourhostname.local:3000` for development and
-    `http://your-site.com` for production
-  - Application Type: "Browser"
-  - Callback URL: `http://yourhostname.local:3000` for development and
-    `http://your-site.com` for production
-  - Default Access Type: "Read & Write"
-6. Save the application.
-
 ### Github
 
 [Github / Applications / Register a new OAuth application][4]
@@ -89,18 +75,6 @@ Make sure you specifity the right IP address.
   - Callback URL: `http://yourhostname.local:3000` for development and
     `http://your-site.com` for production
 4. Click Create.
-
-### Amazon
-
-[Amazon / App Console / Register a new OAuth application][10]
-
-1. Register New Application.
-2. Name the Application, provide description and URL for Privacy Policy.
-3. Click Save.
-4. Add Your site under Web Settings > Allowed Return URLs (example:
-   `http://localhost:3000/users/auth/amazon/callback`)
-
-> The app console is available at [https://login.amazon.com/manageApps](https://login.amazon.com/manageApps)
 
 ### Google OAuth2
 [Google / APIs / Credentials/ Create Credential](https://console.developers.google.com/)
@@ -140,10 +114,39 @@ strategy][12] for them. (If there isn't, you can [write one][13].)
      your LinkedIn link.
    - Include in your CSS a definition for `.icon-spree-linkedin-circled` and an
      embedded icon font for LinkedIn from [Fontello][14] (the way existing
-     icons for Facebook, Twitter, etc are implemented). You can also override
+     icons for Facebook etc are implemented). You can also override
      CSS classes for other providers, `.icon-spree-<provider>-circled`, to use
      different font icons or classic background images, without having to
      override views.
+
+#### Apple Id Example
+
+1. Add `gem "omniauth-apple"` to your Gemfile and run `bundle install`.
+2. In `config/initializers/solidus_social.rb` add and initialize a new provider
+   for SolidusSocial:
+
+   ```ruby
+
+     config.providers = {
+        apple:          {
+          icon:   'fa-apple',
+          title:  'Apple'
+        },
+       # More providers here
+   ```
+   add its configuration after `SolidusSocial.init_providers` line:
+   ```ruby
+   
+     Devise.setup do |config|
+       # The configuration key has to match your omniauth strategy.
+       config.omniauth :apple, ENV['APPLE_CLIENT_ID'], '',
+                       scope:    'email',
+                       team_id:  ENV['APPLE_TEAM_ID'],
+                       key_id:   ENV['APPLE_KEY_ID'],
+                       pem:      ENV['APPLE_PRIVATE_KEY'].gsub('\n', "\n")
+     end
+   ```
+   Notice: APPLE_PRIVATE_KEY should consist from one-line p8-file content, like this `'\n-----BEGIN PRIVATE KEY-----\nsecret\n-----END PRIVATE KEY-----\n'`
 
 Documentation
 -------------
@@ -188,16 +191,14 @@ Copyright (c) 2014 [John Dyer][7] and [contributors][8], released under the [New
 
 [1]: https://github.com/spree/spree
 [2]: https://developers.facebook.com/apps/?action=create
-[3]: https://apps.twitter.com/app/new
-[4]: https://github.com/settings/applications/new
-[5]: http://www.fsf.org/licensing/essays/free-sw.html
-[6]: https://github.com/solidusio-contrib/solidus_social/issues
-[7]: https://github.com/LBRapid
-[8]: https://github.com/solidusio-contrib/solidus_social/graphs/contributors
-[9]: https://github.com/solidusio-contrib/solidus_social/blob/master/LICENSE
-[10]: https://login.amazon.com/manageApps
-[11]: https://github.com/solidusio-contrib/solidus_social/blob/master/CONTRIBUTING.md
-[12]: https://github.com/intridea/omniauth/wiki/List-of-Strategies
-[13]: https://github.com/intridea/omniauth/wiki/Strategy-Contribution-Guide
-[14]: http://fontello.com/
-[15]: http://www.rubydoc.info/github/solidusio-contrib/solidus_social/
+[3]: https://github.com/settings/applications/new
+[4]: http://www.fsf.org/licensing/essays/free-sw.html
+[5]: https://github.com/solidusio-contrib/solidus_social/issues
+[6]: https://github.com/LBRapid
+[7]: https://github.com/solidusio-contrib/solidus_social/graphs/contributors
+[8]: https://github.com/solidusio-contrib/solidus_social/blob/master/LICENSE
+[9]: https://github.com/solidusio-contrib/solidus_social/blob/master/CONTRIBUTING.md
+[10]: https://github.com/intridea/omniauth/wiki/List-of-Strategies
+[11]: https://github.com/intridea/omniauth/wiki/Strategy-Contribution-Guide
+[12]: http://fontello.com/
+[13]: http://www.rubydoc.info/github/solidusio-contrib/solidus_social/
