@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.metadata['source_code_uri'] = 'https://github.com/solidusio-contrib/solidus_social'
   spec.metadata['changelog_uri'] = 'https://github.com/solidusio-contrib/solidus_social/blob/master/CHANGELOG.md'
 
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.4')
+  spec.required_ruby_version = '>= 2.4'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -36,10 +36,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'omniauth-facebook'
   spec.add_dependency 'omniauth-github'
   spec.add_dependency 'omniauth-google-oauth2'
-  spec.add_dependency 'omniauth-twitter'
+  spec.add_dependency 'omniauth-rails_csrf_protection'
+  spec.add_dependency 'omniauth-twitter2'
   spec.add_dependency 'solidus_auth_devise'
-  spec.add_dependency 'solidus_core', ['>= 2.0.0', '< 3']
-  spec.add_dependency 'solidus_support', '>= 0.5'
+  spec.add_dependency 'solidus_core', ['>= 2.0.0', '< 4']
+  spec.add_dependency 'solidus_support', '~> 0.5'
 
   spec.add_development_dependency 'solidus_dev_support'
 end

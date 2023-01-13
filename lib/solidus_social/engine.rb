@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'omniauth-twitter'
 require 'omniauth-facebook'
 require 'omniauth-instagram'
 require 'omniauth-github'
 require 'omniauth-google-oauth2'
-require 'omniauth-amazon'
+require 'omniauth/twitter2'
+require 'omniauth/rails_csrf_protection'
 require 'deface'
-require 'coffee_script'
 require 'spree/core'
+require 'solidus_social/social_configuration'
 require 'solidus_social/facebook_omniauth_strategy_ext'
 
 module SolidusSocial

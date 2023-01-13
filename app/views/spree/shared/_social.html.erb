@@ -4,8 +4,12 @@
   <% end %>
 
   <% Spree::AuthenticationMethod.available_for(spree_current_user).each do |method| %>
-    <%= link_to(content_tag(:i, '', class: "icon-spree-#{method.provider.dasherize}-circled"),
-          spree.send("spree_user_#{method.provider}_omniauth_authorize_path", r: rand),
-          title: t('spree.sign_in_with', provider: method.provider)) if method.active %>
+    <% if method.active %>
+      <%= form_tag(spree.send("spree_user_#{method.provider}_omniauth_authorize_path", r: rand), method: 'post') do %>
+        <%= button_tag(type: 'submit', title: t('spree.sign_in_with', provider: method.provider)) do %>
+          <%= content_tag(:i, '', class: "icon-spree-#{method.provider.dasherize}-circled") %>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
